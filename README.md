@@ -32,13 +32,33 @@
 - Tạo Tables: users, products
 - Fake dữ liệu
 
+```sql
+    CREATE TABLE users (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        fullname VARCHAR(50) NOT NULL,
+        email VARCHAR(150) NOT NULL UNIQUE,
+        birthday DATE,
+        password VARCHAR(32),
+        address VARCHAR(200)
+    )
+```
+
+```sql
+    CREATE TABLE login_tokens (
+        id_user INT REFERENCES users(id),
+        token VARCHAR(32) NOT NULL UNIQUE,
+        PRIMARY KEY (id_user, token)
+    )
+```
+
 #### B2. Phân tịch API
 
 BASE_URL: http://localhost/project/authen-api
 
 > Authen:
-> -API: login
+> API: login
 
+```js
     - URL: api/authen.php
     - Method: POST
     - Request: {
@@ -50,9 +70,11 @@ BASE_URL: http://localhost/project/authen-api
         "status": 1 (1: success, 2 failed),
         "msg": "Error ???"
     }
+```
 
 > API: logout
 
+```js
     - URL: api/authen.php
     - Method: POST
     - Request: {
@@ -62,9 +84,11 @@ BASE_URL: http://localhost/project/authen-api
         "status": 1 (1: success, 2 failed),
         "msg": "Error ???"
     }
+```
 
 > API: register
 
+```js
     - URL: api/authen.php
     - Method: POST
     - Request: {
@@ -79,9 +103,11 @@ BASE_URL: http://localhost/project/authen-api
         "status": 1 (1: success, 2 failed),
         "msg": "Error ???"
     }
+```
 
 #### API userList
 
+```js
     - URL: api/authen.php
     - Method: POST
     - Request: {
@@ -107,10 +133,11 @@ BASE_URL: http://localhost/project/authen-api
             }
         ]
     }
+```
 
-#### API Product:
+#### API productList:
 
-    API: productList
+```js
     - URL: api/product.php
     - Method: POST
     - Request: {
@@ -134,6 +161,7 @@ BASE_URL: http://localhost/project/authen-api
             }
         ]
     }
+```
 
 #### B3. Code Server Backend
 

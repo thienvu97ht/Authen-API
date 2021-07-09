@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>User Page</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+<body>
+    <div class="container mt-30">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2 class="text-center">User List Manager</h2>
+                <a href="#" onclick="logout()">Logout</a>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>NO</th>
+                            <th>Full Name</th>
+                            <th>User Name</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userList">
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="./js/config.js"></script>
+
+    <script>
+        $(function () {
+            $.post(BASE_URL + API_AUTHEN, {
+                'action': AUTHEN_USER_LIST,
+            }, function (data) {
+                var obj = JSON.parse(data)
+
+
+                if (obj.status == 1) {
+                    // Hiển thị danh sách User
+                    const { userList } = obj
+                    for (i = 0; i < userList.length; i++) {
+                        item = userList[i];
+                        $('#userList').append(
+                            `<tr>
+                                <td>${i + 1}</td>
+                                <td>${item['fullname']}</td>
+                                <td>${item['username']}</td>
+                                <td>${item['email']}</td>
+                                <td>${item['address']}</td>
+                            </tr>`
+                        )
+                    }
+
+                } else {
+                    // Đăng nhập thất bại
+                    window.open('login.html', "_self")
+                }
+            })
+        });
+
+        function logout() {
+            $.post(BASE_URL + API_AUTHEN, {
+                'action': AUTHEN_LOGOUT,
+            }, function (data) {
+                window.open('login.html', "_self")
+            })
+        }
+    </script>
+</body>
+
+</html>
