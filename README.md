@@ -1,9 +1,9 @@
 ### Xây dựng dự án sử dụng API
 
-- Backend: (PHP) -] logic nghiệp vụ
+- Backend: (PHP) -> logic nghiệp vụ
 - Client:
 - Mobile, PC Application
-- Frontend -] HTML/CSS/JS
+- Frontend -> HTML/CSS/JS
 
 ===========================================================================
 
@@ -27,7 +27,7 @@
 
 ### Triển khai:
 
-#### B1. Xậy dựng database.
+#### B1. Xây dựng database.
 
 - Tạo Tables: users, products
 - Fake dữ liệu
@@ -51,12 +51,13 @@
     )
 ```
 
-#### B2. Phân tịch API
+#### B2. Phân tích API
 
 BASE_URL: http://localhost/project/authen-api
 
 > Authen:
-> API: login
+
+#### API: login
 
 ```js
     - URL: api/authen.php
@@ -72,7 +73,7 @@ BASE_URL: http://localhost/project/authen-api
     }
 ```
 
-> API: logout
+#### API: logout
 
 ```js
     - URL: api/authen.php
@@ -86,7 +87,7 @@ BASE_URL: http://localhost/project/authen-api
     }
 ```
 
-> API: register
+#### API: register
 
 ```js
     - URL: api/authen.php
